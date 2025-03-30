@@ -1,0 +1,71 @@
+# Passo 1: Definição das Classes
+class Cliente:
+    def __init__(self, nome, cpf):
+        self.nome = nome
+        self.cpf = cpf
+    
+    def fazer_pedido(self, pedido):
+        print(f"{self.nome} realizou um pedido.")
+    
+    def realizar_pagamento(self, pedido):
+        print(f"{self.nome} pagou R${pedido.calcular_total():.2f} pelo pedido.")
+
+class Item:
+    def __init__(self, nome, preco):
+        self.nome = nome
+        self.preco = preco
+
+class Pedido:
+    def __init__(self):
+        self.itens = []
+    
+    def adicionar_item(self, item):
+        self.itens.append(item)
+        print(f"Item {item.nome} adicionado ao pedido.")
+    
+    def calcular_total(self):
+        return sum(item.preco for item in self.itens)
+    
+    def exibir_pedido(self):
+        print("Resumo do Pedido:")
+        for item in self.itens:
+            print(f"- {item.nome}: R${item.preco:.2f}")
+        print(f"Total: R${self.calcular_total():.2f}")
+
+class Atendente:
+    def __init__(self, nome, codigo):
+        self.nome = nome
+        self.codigo = codigo
+    
+    def registrar_pedido(self, pedido):
+        print(f"Pedido registrado pelo atendente {self.nome}.")
+    
+    def emitir_recibo(self, pedido):
+        print("Recibo emitido.")
+        pedido.exibir_pedido()
+
+# Passo 2: Instanciação dos Objetos
+cliente1 = Cliente("João", "123.456.789-00")
+atendente1 = Atendente("Carlos", "A001")
+pedido1 = Pedido()
+
+item1 = Item("Sanduíche", 15.00)
+item2 = Item("Suco", 5.00)
+
+# Passo 3: Interação dos Objetos
+print("--- Cliente realiza o pedido ---")
+pedido1.adicionar_item(item1)
+pedido1.adicionar_item(item2)
+
+print("--- Exibir resumo do pedido ---")
+pedido1.exibir_pedido()
+
+print("--- Cliente confirma o pedido ---")
+cliente1.fazer_pedido(pedido1)
+atendente1.registrar_pedido(pedido1)
+
+print("--- Cliente realiza o pagamento ---")
+cliente1.realizar_pagamento(pedido1)
+
+print("--- Atendente emite o recibo ---")
+atendente1.emitir_recibo(pedido1)
