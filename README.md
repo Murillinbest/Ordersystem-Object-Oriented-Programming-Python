@@ -112,10 +112,3 @@ Total: R$20.00
 
 Este projeto é livre para estudos, melhorias e adaptações.
 
-Se quiser, posso também criar:
-* Versão orientada a menus
-* Versão com tratamento de erros
-* UML completo das classes
-* README com imagens, badges e layout mais elaborado
-
-Só pedir!
